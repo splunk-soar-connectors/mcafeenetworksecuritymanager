@@ -10,7 +10,6 @@
     "publisher": "Martin Ohl",
     "license": "Copyright Martin Ohl 2017",
     "app_version": "1.0.2",
-    "utctime_updated": "2017-11-22T11:08:58.749956Z",
     "package_name": "phantom_mcafeensm",
     "main_module": "nsm_connector.pyc",
     "min_phantom_version": "3.0.251",
@@ -95,15 +94,15 @@
                     "primary": true,
                     "contains": [],
                     "value_list": [
-                       "15",
-                       "30",
-                       "45",
-                       "60",
-                       "240",
-                       "480",
-                       "720",
-                       "960",
-                       "999"
+                        "15",
+                        "30",
+                        "45",
+                        "60",
+                        "240",
+                        "480",
+                        "720",
+                        "960",
+                        "999"
                     ],
                     "default": "",
                     "order": 1
