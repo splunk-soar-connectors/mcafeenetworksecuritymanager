@@ -9,7 +9,7 @@
     "product_version_regex": ".*",
     "publisher": "Martin Ohl",
     "license": "Copyright Martin Ohl 2017",
-    "app_version": "1.0.1",
+    "app_version": "1.0.2",
     "utctime_updated": "2017-11-22T11:08:58.749956Z",
     "package_name": "phantom_mcafeensm",
     "main_module": "nsm_connector.pyc",
@@ -50,7 +50,7 @@
         "sensor_id": {
             "description": "NSM Sensor ID",
             "data_type": "numeric",
-            "required": true,
+            "required": false,
             "value_list": [],
             "default": "",
             "order": 5

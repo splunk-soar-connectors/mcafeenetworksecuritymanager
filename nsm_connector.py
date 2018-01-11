@@ -32,6 +32,12 @@ def session(creds, nsmurl, verify):
    return sessionheader
 
 
+def get_sensors(nsmurl, headers, verify):
+   r = requests.get(nsmurl + 'sensors', headers=headers, verify=verify)
+   res = r.json()
+   return res
+
+
 def is_sensorup(nsmurl, nsm_sensor, headers, verify):
    r = requests.get(nsmurl + 'sensor/%s/status' % nsm_sensor, headers=headers, verify=verify)
    res = r.json()
@@ -116,9 +122,6 @@ class MfeNSMConnector(BaseConnector):
         if (not nsm_pw):
             self.save_progress("No NSM Password Defined.")
             return self.get_status()
-        if (not nsm_sensor):
-            self.save_progress("No NSM Sensor Defined. Please follow https://kc.mcafee.com/corporate/index?page=content&id=KB57451")
-            return self.get_status()
 
         self.save_progress("Testing the NSM connectivity")
         self.save_progress(phantom.APP_PROG_CONNECTING_TO_ELLIPSES, nsm_ip)
@@ -127,7 +130,19 @@ class MfeNSMConnector(BaseConnector):
            creds = b64(nsm_user, nsm_pw)
            nsmurl = "https://" + nsm_ip + "/sdkapi/"
            headers = session(creds, nsmurl, self._verify)
-           logout(headers, nsmurl, self._verify)
+           sensors = get_sensors(nsmurl, headers, self._verify)
+           if (not nsm_sensor):
+              self.save_progress("No SensorID defined. Please enter a SensorID in the configuration.")
+              try:
+                 for i in sensors['SensorDescriptor']:
+                    model = i['model']
+                    ip = i['sensorIPAddress']
+                    sensorid = i['sensorId']
+                    self.save_progress("Model: %s   |   Sensor IP Address: %s  |   SensorID: %s " % (model, ip, str(sensorid)))
+              except:
+                 self.set_status(phantom.APP_ERROR, "No Sensor found. Please attach a Sensor to the McAfee ESM.")
+                 return self.get_status()
+              logout(headers, nsmurl, self._verify)
 
         except:
            self.set_status(phantom.APP_ERROR, NSM_ERR_SERVER_CONNECTION)
