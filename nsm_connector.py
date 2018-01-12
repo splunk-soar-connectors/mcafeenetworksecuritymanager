@@ -113,16 +113,6 @@ class MfeNSMConnector(BaseConnector):
         nsm_pw = config.get(NSM_PW)
         nsm_sensor = config.get(NSM_SENSOR)
 
-        if (not nsm_ip):
-            self.save_progress("No NSM IP/Hostname Defined.")
-            return self.get_status()
-        if (not nsm_user):
-            self.save_progress("No NSM User Defined.")
-            return self.get_status()
-        if (not nsm_pw):
-            self.save_progress("No NSM Password Defined.")
-            return self.get_status()
-
         self.save_progress("Testing the NSM connectivity")
         self.save_progress(phantom.APP_PROG_CONNECTING_TO_ELLIPSES, nsm_ip)
 
@@ -146,7 +136,6 @@ class MfeNSMConnector(BaseConnector):
 
         except:
            self.set_status(phantom.APP_ERROR, NSM_ERR_SERVER_CONNECTION)
-           self.append_to_message(NSM_ERR_CONNECTIVITY_TEST)
            return self.get_status()
 
         return self.set_status_save_progress(phantom.APP_SUCCESS, NSM_SUCC_CONNECTIVITY_TEST)
@@ -182,7 +171,6 @@ class MfeNSMConnector(BaseConnector):
             action_result.set_status(phantom.APP_SUCCESS, NSM_SUCC_QUERY)
         except:
             self.set_status(phantom.APP_ERROR, NSM_ERR_SERVER_CONNECTION)
-            self.append_to_message(NSM_ERR_CONNECTIVITY_TEST)
             return self.get_status()
 
         return action_result.get_status()
@@ -217,7 +205,6 @@ class MfeNSMConnector(BaseConnector):
             action_result.set_status(phantom.APP_SUCCESS, NSM_SUCC_QUERY)
         except:
             self.set_status(phantom.APP_ERROR, NSM_ERR_SERVER_CONNECTION)
-            self.append_to_message(NSM_ERR_CONNECTIVITY_TEST)
             return self.get_status()
 
         return action_result.get_status()
