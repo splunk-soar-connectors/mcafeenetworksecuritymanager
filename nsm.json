@@ -10,17 +10,15 @@
     "publisher": "Martin Ohl",
     "license": "Copyright Martin Ohl 2017",
     "app_version": "1.0.2",
-    "utctime_updated": "2017-12-09T01:15:55.000000Z",
     "package_name": "phantom_mcafeensm",
     "main_module": "nsm_connector.pyc",
     "min_phantom_version": "3.0.251",
     "app_wizard_version": "1.0.0",
     "configuration": {
-        "nsm_ip": {
-            "description": "NSM IP Address or Hostname",
+        "ip": {
+            "description": "IP Address or Hostname",
             "data_type": "string",
             "required": true,
-            "value_list": [],
             "default": "",
             "order": 0
         },
@@ -31,27 +29,24 @@
             "order": 2,
             "default": false
         },
-        "nsm_user": {
-            "description": "NSM Username (Super User)",
+        "user": {
+            "description": "Username (Super User)",
             "data_type": "string",
             "required": true,
-            "value_list": [],
             "default": "",
             "order": 3
         },
-        "nsm_pw": {
-            "description": "NSM Password",
+        "pw": {
+            "description": "Password",
             "data_type": "password",
             "required": true,
-            "value_list": [],
             "default": "",
             "order": 4
         },
         "sensor_id": {
-            "description": "NSM Sensor ID",
+            "description": "Sensor ID",
             "data_type": "numeric",
-            "required": true,
-            "value_list": [],
+            "required": false,
             "default": "",
             "order": 5
         }
@@ -89,21 +84,21 @@
                     "order": 0
                 },
                 "duration": {
-                    "description": "Duration time of quarentine (15, 30, 45, 60, 240, ..., 999)",
+                    "description": "Duration time of quarantine (15, 30, 45, 60, 240, ..., 999)",
                     "data_type": "numeric",
                     "required": true,
                     "primary": true,
                     "contains": [],
                     "value_list": [
-                        "15",
-                        "30",
-                        "45",
-                        "60",
-                        "240",
-                        "480",
-                        "720",
-                        "960",
-                        "999"
+                       "15",
+                       "30",
+                       "45",
+                       "60",
+                       "240",
+                       "480",
+                       "720",
+                       "960",
+                       "999"
                     ],
                     "default": "",
                     "order": 1
