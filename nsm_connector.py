@@ -66,7 +66,7 @@ def post_qhost(nsmurl, headers, nsm_sensor, block_ip, duration, verify):
       r = requests.post(nsmurl + 'sensor/%s/action/quarantinehost' % nsm_sensor, headers=headers, data=json.dumps(payload), verify=verify)
       res = r.json()
    elif is_sensorup(nsmurl, nsm_sensor, headers, verify) is False:
-      res = (0, "Sensor %s down" % sensor_id)
+      res = (0, "Sensor %s down" % nsm_sensor)
 
    return res
 
@@ -77,7 +77,7 @@ def delete_qhost(nsmurl, headers, nsm_sensor, unblock_ip, verify):
       r = requests.delete(nsmurl + 'sensor/%s/action/quarantinehost/%s' % (nsm_sensor, unblock_ip), headers=headers, verify=verify)
       res = r.json()
    elif is_sensorup(nsmurl, nsm_sensor, headers, verify) is False:
-      res = (0, "Sensor %s down" % sensor_id)
+      res = (0, "Sensor %s down" % nsm_sensor)
 
    return res
 
