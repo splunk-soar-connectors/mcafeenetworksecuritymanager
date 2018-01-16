@@ -71,6 +71,7 @@
             "verbose": "",
             "type": "contain",
             "read_only": false,
+            "undo": "unblock ip",
             "parameters": {
                 "ip": {
                     "description": "IP to block",
@@ -153,6 +154,7 @@
             "verbose": "",
             "type": "correct",
             "read_only": false,
+            "undo": "block ip",
             "parameters": {
                 "ip": {
                     "description": "IP to unblock",
