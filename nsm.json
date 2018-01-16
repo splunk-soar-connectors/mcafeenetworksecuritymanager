@@ -41,7 +41,6 @@
             "description": "Password",
             "data_type": "password",
             "required": true,
-            "default": "",
             "order": 4
         },
         "sensor_id": {
@@ -86,7 +85,7 @@
                     "order": 0
                 },
                 "duration": {
-                    "description": "Duration time of quarantine (15, 30, 45, 60, 240, ..., 999)",
+                    "description": "Duration time (sec) of quarantine (15, 30, 45, 60, 240, 300, ..., 999)",
                     "data_type": "numeric",
                     "required": true,
                     "primary": true,
@@ -97,6 +96,7 @@
                         "45",
                         "60",
                         "240",
+                        "300",
                         "480",
                         "720",
                         "960",
