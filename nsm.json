@@ -88,7 +88,6 @@
                     "description": "Duration time (sec) of quarantine (15, 30, 45, 60, 240, 300, ..., 999)",
                     "data_type": "numeric",
                     "required": true,
-                    "primary": true,
                     "contains": [],
                     "value_list": [
                         "15",
