@@ -135,6 +135,7 @@ class MfeNSMConnector(BaseConnector):
               logout(headers, nsmurl, self._verify)
 
         except:
+           self.save_progress("Test Connectivity Failed")
            self.set_status(phantom.APP_ERROR, NSM_ERR_SERVER_CONNECTION)
            return self.get_status()
 
