@@ -1,7 +1,7 @@
 {
     "appid": "1cb35bd5-109d-48b0-aa8a-5121916adb84",
     "name": "McAfee Network Security Manager",
-    "description": "This app supports multiple containment actions on the McAfee NSM.",
+    "description": "This app supports multiple containment actions on the McAfee NSM",
     "type": "network security",
     "product_vendor": "McAfee",
     "logo": "logo_mcafee.svg",
