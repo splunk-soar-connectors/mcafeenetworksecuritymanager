@@ -121,18 +121,35 @@ class MfeNSMConnector(BaseConnector):
            nsmurl = "https://" + nsm_ip + "/sdkapi/"
            headers = session(creds, nsmurl, self._verify)
            sensors = get_sensors(nsmurl, headers, self._verify)
+           sensor_list = []
+           self.save_progress("Querying sensors")
+           try:
+             for i in sensors['SensorDescriptor']:
+                model = i['model']
+                ip = i['sensorIPAddress']
+                sensorid = i['sensorId']
+                sensor_list.append(str(sensorid))
+                self.save_progress("Model: %s   |   Sensor IP Address: %s  |   SensorID: %s " % (model, ip, str(sensorid)))
+           except:
+             self.set_status(phantom.APP_ERROR, "No Sensor found. Please attach a Sensor to the McAfee ESM.")
+             return self.get_status()
+
            if (not nsm_sensor):
-              self.save_progress("No SensorID defined. Please enter a SensorID in the configuration.")
-              try:
-                 for i in sensors['SensorDescriptor']:
-                    model = i['model']
-                    ip = i['sensorIPAddress']
-                    sensorid = i['sensorId']
-                    self.save_progress("Model: %s   |   Sensor IP Address: %s  |   SensorID: %s " % (model, ip, str(sensorid)))
-              except:
-                 self.set_status(phantom.APP_ERROR, "No Sensor found. Please attach a Sensor to the McAfee ESM.")
-                 return self.get_status()
-              logout(headers, nsmurl, self._verify)
+              if (len(sensor_list) == 1):
+                 self.save_progress("Sensor ID not defined in the asset config, please set it to {0}".format(sensor_list[0]))
+              elif (len(sensor_list) > 1):
+                 self.save_progress("Sensor ID not defined in the asset config, please set it to one of: {0}".format(', '.join(sensor_list)))
+           else:
+               if (nsm_sensor not in sensor_list):
+                  if (len(sensor_list) == 1):
+                     self.save_progress("Invalid Sensor ID defined in the asset config, please set it to {0}".format(sensor_list[0]))
+                  elif (len(sensor_list) > 1):
+                     self.save_progress("InvalidSensor ID defined in the asset config, please set it to one of: {0}".format(', '.join(sensor_list)))
+                  self.save_progress("Test Connectivity Failed")
+                  self.set_status(phantom.APP_ERROR, NSM_ERR_SERVER_CONNECTION)
+                  return self.get_status()
+
+           logout(headers, nsmurl, self._verify)
 
         except:
            self.save_progress("Test Connectivity Failed")
