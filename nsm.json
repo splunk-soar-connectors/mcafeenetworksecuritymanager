@@ -10,7 +10,7 @@
     "product_version_regex": ".*",
     "publisher": "Martin Ohl",
     "license": "Copyright Martin Ohl 2017",
-    "app_version": "1.0.9",
+    "app_version": "1.0.10",
     "package_name": "phantom_mcafeensm",
     "main_module": "nsm_connector.pyc",
     "min_phantom_version": "3.0.251",
@@ -203,7 +203,7 @@
             "versions": "EQ(*)"
         }
     ],
-    "utctime_updated": "2018-01-16T22:45:48.000000Z",
+    "utctime_updated": "2022-01-07T21:35:30.000000Z",
     "pip_dependencies": {
         "wheel": [
             {
